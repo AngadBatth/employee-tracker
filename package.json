@@ -1,0 +1,25 @@
+{
+    "name": "employee-tracker",
+    "version": "1.0.0",
+    "description": "application used to track employee data",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node index.js"
+    },
+    "author": "AngadBatth",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/AngadBatth/employee-tracker.git"
+    },
+    "bugs": {
+      "url": "https://github.com/AngadBatth/employee-tracker/issues"
+    },
+    "homepage": "https://github.com/AngadBatth/employee-tracker#readme",
+    "dependencies": {
+        "console.table": "^0.10.0",
+        "inquirer": "^8.2.4",
+        "mysql2": "^3.3.1"
+    }
+  }
