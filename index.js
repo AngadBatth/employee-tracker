@@ -241,7 +241,7 @@ const addRole = () => {
                 const sqlQuery = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)";
                 const params = [data.employeeFn, data.employeeLn, data.newRole, data.teamLead];
 
-                db.query(sqlQuery, params, (err, result) => {
+                dbConnect.query(sqlQuery, params, (err, result) => {
                     if (err) 
                     {
                         console.error(err);
