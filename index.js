@@ -68,7 +68,7 @@ function promptUser() {
 
 
 function viewDepartment() {
-  sbConnect.query('SELECT * FROM department', (err, res) => {
+  dbConnect.query('SELECT * FROM department', (err, res) => {
     if (err) throw err;
     console.table(res);
     promptUser();
