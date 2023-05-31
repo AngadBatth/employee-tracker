@@ -1,7 +1,9 @@
+// Including packages
 const consoleTable = require("console.table");
 const inquire = require("inquirer");
 const mySql = require("mysql2");
 
+// Creating DB connection
 const dbConnect = mySql.createConnection(
     {
         host: "localhost",
@@ -11,7 +13,7 @@ const dbConnect = mySql.createConnection(
     }
 );
 
-
+// Initial Prompts for User
 function promptUser() {
   inquire
     .prompt({
@@ -66,7 +68,7 @@ function promptUser() {
     });
 }
 
-
+// Function to View all Departments
 function viewDepartment() {
   dbConnect.query('SELECT * FROM department', (err, res) => {
     if (err) throw err;
@@ -75,7 +77,7 @@ function viewDepartment() {
   });
 }
 
-
+// Function to View all Roles
 function viewRoles() {
   dbConnect.query(
     `SELECT role.id, role.title, department.name, role.salary FROM role INNER JOIN department ON department.id = role.department_id`,
@@ -87,7 +89,7 @@ function viewRoles() {
   );
 }
 
-// Function to view all employees
+// Function to View all Employees and their respective Managers
 function viewEmployees() {
   dbConnect.query(
     `SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(m.first_name," ",m.last_name) AS manager FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON department.id = role.department_id LEFT JOIN employee m ON m.id = employee.manager_id;`,
@@ -99,7 +101,7 @@ function viewEmployees() {
   );
 }
 
-// Function to add a department
+// Function to add a new Department
 function addDepartment() {
   inquire
     .prompt([
@@ -125,6 +127,7 @@ function addDepartment() {
     })
 };
 
+// Function to add a new Role and its Salary
 const addRole = () => {
     dbConnect.query(`SELECT * FROM department`, (err, departments) => {
       if (err) 
@@ -178,6 +181,7 @@ const addRole = () => {
     });
   };
 
+  // Function to add a new Employee as well as their Department, Role, Salary and Manager
   const addEmployee = () => {
     dbConnect.query(`SELECT * FROM role`, (err, roles) => {
         if (err) 
@@ -256,6 +260,7 @@ const addRole = () => {
     });
 };
 
+// Function to update an Employees Role
 const updateRole = () => {
     dbConnect.query(`SELECT * FROM employee`, (err, employees) => {
       if (err) 
@@ -323,4 +328,5 @@ const updateRole = () => {
     });
   };
 
+  // Calls function to start the program when using `node index.js`
   promptUser();
