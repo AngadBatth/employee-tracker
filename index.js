@@ -13,7 +13,7 @@ const dbConnect = mySql.createConnection(
 
 
 function promptUser() {
-  inquirer
+  inquire
     .prompt({
       name: 'action',
       type: 'list',
@@ -101,7 +101,7 @@ function viewEmployees() {
 
 // Function to add a department
 function addDepartment() {
-  inquirer
+  inquire
     .prompt([
       {
         name: 'newDept',
